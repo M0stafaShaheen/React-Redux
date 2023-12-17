@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+ import './App.css'
+import {useSelector , useDispatch} from  'react-redux' ; 
+import { deposite, withdraw } from './store/actions/bank-actions';
+import Products from './components/products'; 
 
 function App() {
+ const state  = useSelector(state => state.bank) ;
+ const dispatch = useDispatch() ;  
+ console.log(state)  ;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <p>Bank Account Balance : {state} </p>
+     <button onClick ={() => dispatch(withdraw(100))}>Withdraw</button>
+     <button onClick = {()=> dispatch(deposite(100))}>Deposite</button>
+      <Products /> 
     </div>
   );
 }
